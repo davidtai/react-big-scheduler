@@ -20,7 +20,7 @@ async function build() {
   const root = path.resolve(__dirname, '..');
   const sourceDir = path.resolve(root, 'src');
   const targetDir = path.resolve(root, 'lib');
-  const jsTarget = targetDir;
+  const jsTarget = targetDir + '/index.js';
   const cssTarget = path.resolve(targetDir, 'css');
   const hackFileName = 'antd-globals-hiding-hack'
   const hackFileSource = path.resolve(
@@ -40,7 +40,7 @@ async function build() {
 
     // transpiling and copy js
     process.stdout.write('Transpiling js with babel... \n');
-    const jsResult = await exec(`babel ${sourceDir} --out-dir ${jsTarget}`);
+    const jsResult = await exec(`babel ${sourceDir} --out-file ${jsTarget}`);
 
     // copy css
     process.stdout.write('Copying library style definitions... \n');
